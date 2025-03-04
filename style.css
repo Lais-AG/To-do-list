@@ -1,35 +1,67 @@
-body{
+body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     height: 100vh;
-    background: linear-gradient(100deg, #575656, #062e3f );  /*serve para deixar o fundo com degrader de cores*/
+    background: linear-gradient(100deg, #575656, #062e3f);
+    /*serve para deixar o fundo com degrader de cores*/
     color: #ffdfdb;
 }
 
-.default-theme{
+.default-theme {
     width: 40px;
     height: 40px;
-    background: linear-gradient(100deg, #575656, #062e3f );
+    background: linear-gradient(100deg, #575656, #062e3f);
     border: 1px, solid #535252;
     border-radius: 100%;
     cursor: pointer;
 }
 
-.light-theme{
+.light-theme {
     width: 40px;
     height: 40px;
-    background: linear-gradient(100deg, #d4f1ff, #ffffff );
+    background: linear-gradient(100deg, #d4f1ff, #ffffff);
     border: 1px, solid #535252;
     border-radius: 100%;
     cursor: pointer;
 }
 
-.dark-theme{
+.dark-theme {
     width: 40px;
     height: 40px;
-    background: linear-gradient(100deg, #001214, #001f29 );
+    background: linear-gradient(100deg, #001214, #001f29);
     border: 1px, solid #535252;
     border-radius: 100%;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px;
+    gap: 15px;
+}
+
+.main-task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-title{
+    font-size: 48px;
+    background-color: aquamarine;
+}
+
+.container-task{
+    background-color: blue;
+}
+
+.task-input{
+    border-radius: 50px;
+}
+
+.task-button{
+    border-radius:50px;
     cursor: pointer;
 }
