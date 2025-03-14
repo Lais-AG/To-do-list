@@ -32,18 +32,36 @@ darkTheme.addEventListener("click", function(){
     buttonAdd.style.border = "1px solid #F8F8FF";
 });
 
+function createTaskItem(taskText){
+  let itemList = document.createElement("li");
+  itemList.textContent = taskText;
 
-//sempre que estiver usando caixa de texto, uso o .VALUE
+  //criaçao botao de check in
+  let buttonCheck = document.createElement("button");
+  buttonCheck.textContent = "✔";
+  buttonCheck.style.marginLeft = "10px";
+  buttonCheck.addEventListener("click", function(){
+    itemList.classList.toggle("checked");
+  })
+
+  let deleteButton = document.createElement("button");
+  deleteButton.textContent = "Remover";
+  deleteButton.style.marginLeft = "10px";
+  deleteButton.addEventListener("click", function(){
+    itemList.remove();
+    removeTaskStorage(taskText);
+  })
+  itemList.appendChild(buttonCheck);
+  itemList.appendChild(deleteButton);
+  return itemList
+}
+
 buttonAdd.addEventListener("click", function(){
    let taskText = inputAdd.value.trim();
-
-
-   // !== (diferente)
-   //! (negaçao)
-   
+  
    if(taskText !== " "){
-    let itemList = document.createElement("li");
-    itemList.textContent = taskText;
+   //chamar a funçao aqui
+   let itemList = createTaskItem(taskText);
     taskList.appendChild(itemList);
 
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -53,10 +71,6 @@ buttonAdd.addEventListener("click", function(){
    }
 })
 
-//Localstorage armazena informaçoes em objetos.
-//variavel = um valor
-//array = +1 valor
-// objeto = +1 de valor mas de forma mais estruturada, armazena informaçoes, usando chave e valor
 
 window.addEventListener('load', function(){
     let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -66,13 +80,14 @@ window.addEventListener('load', function(){
         li.textContent = task;
         taskList.appendChild(li);
 
-        let removeButton = document.createElement("button");
-        removeButton.textContent = "remover";
-        li.appendChild(removeButton);
-
         })
 })
 
 
 
-
+//funçao para remover o item do localStorage
+function removeTaskStorage(taskText){
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.filter(task => task !== taskText);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
